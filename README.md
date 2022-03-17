@@ -18,4 +18,13 @@
 	10. 다양한 의견 존중하기
 	
 코딩 스타일 
-	1. Google Style 적용 (IntelliJ)
+	1. Google Style 적용하여 활용한다. (intellij-javaj-google-style.xml)
+	2. Intent는 공백 4개로 한다.
+	2. naming Rule 은 아래와 같이 한다.
+		- Class 명 : UpperCamelCase
+		- TestClass 명 : Test 중인 Class 이름으로 시작하여 끝에 Test 를 붙여준다.
+		- Interface 명 : UpperCamelCase
+		- 함수 명 : lowerCamelCase
+		- 상수 명 : 모두 대문자로 하며 밑줄 _ 로 각 단어를 구분한다.
+		- 변수 명 : lowerCamelCase
+		- 파라미터 명 : lowerCamelCase
