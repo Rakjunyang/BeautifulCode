@@ -19,6 +19,7 @@
 	
 코딩 스타일 
 	1. Google Style 적용하여 활용한다. (intellij-javaj-google-style.xml)
+		ctrl + alt + L 누르면 자동 반영
 	2. Intent는 공백 4개로 한다.
 	2. naming Rule 은 아래와 같이 한다.
 		- Class 명 : UpperCamelCase
