@@ -87,3 +87,10 @@
 		chore : 빌드 부분 혹은 패키지 매니저 수정사항
 
 		예시 [fix] ~~ 버그 수정
+
+branch 정책
+
+	Main branch를 두고 개인별로 development branch 를 따서 수정을 진행하고 PR 을 통해 Main branch 에 merge 진행
+	
+	최종 제출시에는 Main branch 에서 Release branch 를 따서 제출 한다.
+	
