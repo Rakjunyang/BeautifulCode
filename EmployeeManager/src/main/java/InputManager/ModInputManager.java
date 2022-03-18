@@ -1,51 +1,25 @@
 package InputManager;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class ModInputManager implements InputManager {
-
-    String[] Options;
+public class ModInputManager implements InputManagerInterface {
+    List<String> Options;
     String Key;
     String Value;
     String ChgKey;
     String ChgValue;
-    Object Operator;
 
-    ModInputManager(String[] data) {
-        Options = Arrays.copyOfRange(data, 1, 4);
-        Key = data[4];
-        Value = data[5];
-        ChgKey = data[6];
-        ChgValue = data[7];
-    }
-
-    @Override
-    public void setOperator() {
+    ModInputManager(List<String> data) {
+        Options = data.subList(1, 4);
+        Key = data.get(4);
+        Value = data.get(5);
+        ChgKey = data.get(6);
+        ChgValue = data.get(7);
 
     }
 
     @Override
-    public Object getOperator() {
-        return Operator;
-    }
-
-    public String[] getOptions() {
-        return Options;
-    }
-
-    public String getKey() {
-        return Key;
-    }
-
-    public String getValue() {
-        return Value;
-    }
-
-    public String getChgKey() {
-        return ChgKey;
-    }
-
-    public String getChgValue() {
-        return ChgValue;
+    public Operator getOperator(OptionSelector optionSelector) {
+        return new ModOperator(optionSelector);
     }
 }

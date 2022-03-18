@@ -1,39 +1,20 @@
 package InputManager;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class SchInputManager implements InputManager {
-
-    String[] Options;
+public class SchInputManager implements InputManagerInterface {
+    List<String> Options;
     String Key;
     String Value;
-    Object Operator;
 
-    SchInputManager(String[] data) {
-        Options = Arrays.copyOfRange(data, 1, 4);
-        Key = data[4];
-        Value = data[5];
+    public SchInputManager(List<String> data) {
+        Options = data.subList(1, 4);
+        Key = data.get(4);
+        Value = data.get(5);
     }
 
     @Override
-    public void setOperator() {
-
-    }
-
-    @Override
-    public Object getOperator() {
-        return Operator;
-    }
-
-    public String[] getOptions() {
-        return Options;
-    }
-
-    public String getKey() {
-        return Key;
-    }
-
-    public String getValue() {
-        return Value;
+    public Operator getOperator(OptionSelector optionSelector) {
+        return new SchOpeartor(optionSelector);
     }
 }

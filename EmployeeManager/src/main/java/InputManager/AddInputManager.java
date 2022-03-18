@@ -1,27 +1,16 @@
 package InputManager;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class AddInputManager implements InputManager {
+public class AddInputManager implements InputManagerInterface {
+    List<String> infos;
 
-    String[] Infos = new String[6];
-    Object Operator;
-
-    AddInputManager(String[] data) {
-        Infos = Arrays.copyOfRange(data, 4, 10);
+    public AddInputManager(List<String> data) {
+        infos = data.subList(4, 10);
     }
 
     @Override
-    public void setOperator() {
-
-    }
-
-    @Override
-    public Object getOperator() {
-        return Operator;
-    }
-
-    public String[] getInfos() {
-        return Infos;
+    public Operator getOperator(OptionSelector optionSelector) {
+        return new AddOperator(optionSelector);
     }
 }
