@@ -11,19 +11,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FileManagerTest {
 
     @Test
-    void loadFileTest() throws IOException {
-        // Case1: File does not exist
-        FileManager fileManager = new FileManager("input_not_exist_case.txt", "dummy.txt");
-        assertFalse(fileManager.loadInputFile());
-
-        // Case2: File exist
+    void loadExistFileTest() throws IOException {
         File tempFile = new File("input_exist_case.txt");
         tempFile.createNewFile();
 
-        fileManager = new FileManager("input_exist_case.txt", "dummy.txt");
+        FileManager fileManager = new FileManager("input_exist_case.txt", "dummy.txt");
         assertTrue(fileManager.loadInputFile());
         fileManager.closeFile();
         tempFile.delete();
+    }
+
+    @Test
+    void loadNotExistFileTest() {
+        FileManager fileManager = new FileManager("input_not_exist_case.txt", "dummy.txt");
+        assertFalse(fileManager.loadInputFile());
     }
 
     @Test

@@ -2,9 +2,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String [] args) throws IOException {
-        // TODO: args[0], args[1]로 받을 것인가요?
-        String inputFileName = "input_20_20.txt";
-        String outputFileName = "output_20_20.txt";
+        String inputFileName = args[0];
+        String outputFileName = args[1];
 
         FileManager fileManager = new FileManager(inputFileName, outputFileName);
         if (!fileManager.init()){
