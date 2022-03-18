@@ -10,11 +10,10 @@ public class Employee {
     private String birthDay;
     private String certi;
 
-    public Employee(String id, String name, String firstName, String lastName,
-        String cl, String phoneNumber, String firstNumber, String midNumber,
-        String lastNumber, String birthDay, String certi) {
+    public Employee(String id, String name, String cl, String phoneNumber, String birthDay, String certi) {
         this.id = id;
-        this.sortKey = Integer.parseInt(id.substring(0, 2)) < 30 ? 2000000000 + Integer.parseInt(id) :  1900000000 + Integer.parseInt(id);
+        this.sortKey = Integer.parseInt(id.substring(0, 2)) < 30 ? 2000000000 + Integer.parseInt(id)
+            : 1900000000 + Integer.parseInt(id);
         this.name = name;
         this.cl = cl;
         this.phoneNumber = phoneNumber;
@@ -23,46 +22,43 @@ public class Employee {
     }
 
 
-    public String getValue(String key){
-        if(key == "id"){
+    public String getValue(String key) {
+        if (key == "id") {
             return id;
         }
-        if(key == "name"){
+        if (key == "name") {
             return name;
         }
-        if(key == "cl"){
+        if (key == "cl") {
             return cl;
         }
-        if(key == "phoneNumber"){
+        if (key == "phoneNumber") {
             return phoneNumber;
         }
-        if(key == "birthDay"){
+        if (key == "birthDay") {
             return birthDay;
         }
-        if(key = ="certi"){
-            return certi;
-        }
-        return null;
+        return certi;
     }
 
-    public void setValue(String key, String value){
-        if(key == "name"){
+    public void setValue(String key, String value) {
+        if (key == "name") {
             this.name = value;
             return;
         }
-        if(key == "cl"){
+        if (key == "cl") {
             this.cl = value;
             return;
         }
-        if(key == "phoneNumber"){
+        if (key == "phoneNumber") {
             this.phoneNumber = value;
             return;
         }
-        if(key == "birthDay"){
+        if (key == "birthDay") {
             this.birthDay = value;
             return;
         }
-        if(key == "certi"){
+        if (key == "certi") {
             this.certi = value;
             return;
         }
