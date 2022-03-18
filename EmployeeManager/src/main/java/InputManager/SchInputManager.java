@@ -1,5 +1,6 @@
 package InputManager;
 
+
 import java.util.List;
 
 public class SchInputManager implements InputManagerInterface {
@@ -15,6 +16,6 @@ public class SchInputManager implements InputManagerInterface {
 
     @Override
     public Operator getOperator(OptionSelector optionSelector) {
-        return new SchOpeartor(optionSelector);
+        return new SearchOpeartor(optionSelector);
     }
 }

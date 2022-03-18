@@ -15,6 +15,6 @@ public class DelInputManager implements InputManagerInterface {
 
     @Override
     public Operator getOperator(OptionSelector optionSelector) {
-        return new DelOperator(optionSelector);
+        return new DeleteOperator(optionSelector);
     }
 }

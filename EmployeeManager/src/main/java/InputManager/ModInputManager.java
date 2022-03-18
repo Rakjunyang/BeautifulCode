@@ -20,6 +20,6 @@ public class ModInputManager implements InputManagerInterface {
 
     @Override
     public Operator getOperator(OptionSelector optionSelector) {
-        return new ModOperator(optionSelector);
+        return new ModifyOperator(optionSelector);
     }
 }
