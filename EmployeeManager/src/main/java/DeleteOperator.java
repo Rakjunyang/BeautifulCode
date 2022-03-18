@@ -1,14 +1,28 @@
-public class DeleteOperator implements Operator{
+import java.util.ArrayList;
 
-    InputManager inputManager;
-    OptionSelector optionSelector;
-    public DeleteOperator(InputManager inputManager, OptionSelector optionSelector){
-        this.inputManager = inputManager;
-        this.optionSelector = optionSelector;
+public class DeleteOperator implements Operator {
+
+    public DeleteOperator() {
+    }
+
+    private String getMatchedString(Employee employee) {
+        return "MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
+            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
+            "BIRTHDAY") + "," + employee.getValue("CERTI");
     }
 
     @Override
-    public String executeOperator() {
-        return null;
+    public ArrayList<String> executeOperator(EmployeeManager employeeManager,
+        OptionSelector optionSelector) {
+        ArrayList<Employee> employeeList = employeeManager.getEmployees();
+        ArrayList<String> deletedEmployeeList = new ArrayList<>();
+        for (int i = 0; i < employeeList.size(); i++) {
+            if (optionSelector.match(employeeList.get(i))) {
+                deletedEmployeeList.add(getMatchedString(employeeList.get(i)));
+                employeeManager.del(i);
+            }
+        }
+
+        return deletedEmployeeList;
     }
 }
