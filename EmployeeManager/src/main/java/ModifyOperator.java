@@ -1,15 +1,13 @@
+import java.util.ArrayList;
+
 public class ModifyOperator implements Operator {
 
-    InputManager inputManager;
-    OptionSelector optionSelector;
 
-    public ModifyOperator(InputManager inputManager, OptionSelector optionSelector) {
-        this.inputManager = inputManager;
-        this.optionSelector = optionSelector;
+    public ModifyOperator() {
     }
 
     @Override
-    public String executeOperator() {
+    public ArrayList<String> executeOperator(EmployeeManager employeeManager, OptionSelector optionSelector) {
         return null;
     }
 }
