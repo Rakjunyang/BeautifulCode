@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -12,11 +13,16 @@ public class OperatorTest {
 
     static Employee employee;
     static OptionSelector optionSelector;
+    static ArrayList<String> matchedStrList = new ArrayList<>();
     @BeforeAll
     static void setEmployee(){
         employee = new Employee("08117441","BMU MPOSXU","CL3","010-2703-3153","20010215","ADV");
         optionSelector = mock(OptionSelector.class);
         when(optionSelector.match(employee)).thenReturn(true);
+
+        matchedStrList.add("MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
+            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
+            "BIRTHDAY") + "," + employee.getValue("CERTI"));
     }
 
     @Test
@@ -42,23 +48,21 @@ public class OperatorTest {
 
     @Test
     void modifyExecuteOperatorTest() {
-        Operator modifyOperator = new ModifyOperator();
+        EmployeeManager employeeManager = new EmployeeManager();
+        employeeManager.add(employee);
+        Operator modifyOperator = new ModifyOperator("phoneNum", "010-3458-5111");
+
         modifyOperator.executeOperator(mock(EmployeeManager.class),mock(OptionSelector.class));
+        assertEquals(modifyOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
+        assertNotEquals(modifyOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
     }
 
     @Test
     void searchExecuteOperatorTest() {
         EmployeeManager employeeManager = new EmployeeManager();
         Operator searchOperator = new SearchOperator();
-        searchOperator.executeOperator(mock(EmployeeManager.class),mock(OptionSelector.class));
-
-        ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
-            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
-            "BIRTHDAY") + "," + employee.getValue("CERTI"));
 
         employeeManager.add(employee);
-
         assertEquals(searchOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
     }
 }
