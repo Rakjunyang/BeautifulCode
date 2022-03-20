@@ -6,7 +6,7 @@ public class DeleteOperator implements Operator {
     }
 
     private String getMatchedString(Employee employee) {
-        return "MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
+        return "DEL,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
             + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
             "BIRTHDAY") + "," + employee.getValue("CERTI");
     }
@@ -19,7 +19,7 @@ public class DeleteOperator implements Operator {
         for (int i = 0; i < employeeList.size(); i++) {
             if (optionSelector.match(employeeList.get(i))) {
                 deletedEmployeeList.add(getMatchedString(employeeList.get(i)));
-                employeeManager.del(i);
+                employeeManager.del(i--);
             }
         }
 
