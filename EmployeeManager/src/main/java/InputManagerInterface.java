@@ -1,3 +1,15 @@
+import java.util.List;
+
 public interface InputManagerInterface {
-    Operator getOperator(OptionSelector optionSelector);
+    List<String> getInfos();
+
+    List<String> getOptions();
+
+    String getKey();
+
+    String getValue();
+
+    String getChgKey();
+
+    String getChgValue();
 }

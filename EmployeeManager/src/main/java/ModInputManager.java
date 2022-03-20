@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class ModInputManager implements InputManagerInterface {
+
     List<String> Options;
     String Key;
     String Value;
@@ -17,7 +18,30 @@ public class ModInputManager implements InputManagerInterface {
     }
 
     @Override
-    public Operator getOperator(OptionSelector optionSelector) {
-        return new ModifyOperator(optionSelector);
+    public List<String> getInfos() {
+        return null;
+    }
+
+    @Override
+    public List<String> getOptions() {
+        return Options;
+    }
+    @Override
+    public String getKey() {
+        return Key;
+    }
+    @Override
+    public String getValue() {
+        return Value;
+    }
+
+    @Override
+    public String getChgKey() {
+        return ChgKey;
+    }
+
+    @Override
+    public String getChgValue() {
+        return ChgValue;
     }
 }
