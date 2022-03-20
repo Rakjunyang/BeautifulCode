@@ -52,9 +52,7 @@ public class OperatorTest {
     void modifyExecuteOperatorTest() {
         EmployeeManager employeeManager = new EmployeeManager();
         employeeManager.add(employee);
-        Operator modifyOperator = new ModifyOperator("phoneNum", "010-3458-5111");
-
-        modifyOperator.executeOperator(mock(EmployeeManager.class),mock(OptionSelector.class));
+        Operator modifyOperator = new ModifyOperator("PHONENUMBER", "010-3458-5111");
 
         ArrayList<String> matchedStrList = new ArrayList<>();
         matchedStrList.add("MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
@@ -62,7 +60,7 @@ public class OperatorTest {
             "BIRTHDAY") + "," + employee.getValue("CERTI"));
 
         assertEquals(modifyOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
-        assertNotEquals(modifyOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
+        assertEquals(employeeManager.getEmployees().get(0).getValue("PHONENUMBER"),"010-3458-5111");
     }
 
     @Test
