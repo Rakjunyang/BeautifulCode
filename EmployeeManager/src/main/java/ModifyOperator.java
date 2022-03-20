@@ -25,7 +25,7 @@ public class ModifyOperator implements Operator {
             if (optionSelector.match(employeeList.get(i))) {
                 matchedEmployeeList.add(getMatchedString(employeeList.get(i)));
                 employeeList.get(i).setValue(changeKey,changeValue);
-                employeeManager.getEmployees().set(i,employeeList.get(i));
+                employeeList.set(i,employeeList.get(i));
             }
         }
 
