@@ -1,5 +1,3 @@
-package InputManager;
-
 import java.util.List;
 
 public class DelInputManager implements InputManagerInterface {

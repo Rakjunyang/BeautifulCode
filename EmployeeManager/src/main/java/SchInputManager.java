@@ -1,6 +1,3 @@
-package InputManager;
-
-
 import java.util.List;
 
 public class SchInputManager implements InputManagerInterface {
