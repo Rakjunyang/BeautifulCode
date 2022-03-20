@@ -1,3 +1,7 @@
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -5,35 +9,56 @@ public class InputManagerTest {
 
     @Test
     public void addInputTest() throws Exception {
-        AddInputManager addInputManager = new AddInputManager("ADD, , , ,18050301,KYUMOK KIM,CL2,010-9777-6055,19980906,PRO".split(","));
+        List<String> testData = Arrays.asList(
+            "ADD, , , ,18050301,KYUMOK KIM,CL2,010-9777-6055,19980906,PRO".split(","));
+        InputManager inputManager = new InputManager(testData);
 
-        Assertions.assertArrayEquals(addInputManager.getInfos(), "ADD, , , ,18050301,KYUMOK KIM,CL2,010-9777-6055,19980906,PRO".split(","));
+        Assertions.assertArrayEquals(inputManager.getInfos().toArray(), testData.toArray());
     }
 
     @Test
     public void delInputTest() throws Exception {
-        DelInputManager delInputManager = new DelInputManager("DEL, , , ,name,KYUMOK KIM".split(","));
-        Assertions.assertArrayEquals(delInputManager.getOptions(), " , , ".split(","));
-        Assertions.assertEquals(delInputManager.getKey(), "name");
-        Assertions.assertEquals(delInputManager.getValue(), "KYUMOK KIM");
+        List<String> testData = Arrays.asList(
+            "DEL, , , ,name,KYUMOK KIM".split(","));
+        InputManager inputManager = new InputManager(testData);
+
+        Assertions.assertArrayEquals(inputManager.getOptions().toArray(), testData.subList(1, 4).toArray());
+
+        Assertions.assertEquals(inputManager.getKey(), testData.get(5));
+        Assertions.assertEquals(inputManager.getValue(), testData.get(6));
     }
 
     @Test
     public void schInputTest() throws Exception {
-        SchInputManager schInputManager = new SchInputManager("SCH, , , ,name,KYUMOK KIM".split(","));
-        Assertions.assertArrayEquals(schInputManager.getOptions(), " , , ".split(","));
-        Assertions.assertEquals(schInputManager.getKey(), "name");
-        Assertions.assertEquals(schInputManager.getValue(), "KYUMOK KIM");
+        List<String> testData = Arrays.asList(
+            "SCH, , , ,name,KYUMOK KIM".split(","));
+        InputManager inputManager = new InputManager(testData);
+
+
+        Assertions.assertArrayEquals(inputManager.getOptions().toArray(), testData.subList(1, 4).toArray());
+        Assertions.assertEquals(inputManager.getKey(), testData.get(5));
+        Assertions.assertEquals(inputManager.getValue(), testData.get(6));
     }
 
     @Test
     public void modInputTest() throws Exception {
-        ModInputManager modInputManager = new ModInputManager("MOD, , , ,name,KYUMOK KIM,name,KYUMOK LEE".split(","));
-        Assertions.assertArrayEquals(modInputManager.getOptions(), " , , ".split(","));
-        Assertions.assertEquals(modInputManager.getKey(), "name");
-        Assertions.assertEquals(modInputManager.getValue(), "KYUMOK KIM");
-        Assertions.assertEquals(modInputManager.getChgKey(), "name");
-        Assertions.assertEquals(modInputManager.getChgValue(), "KYUMOK LEE");
+        List<String> testData = Arrays.asList(
+            "MOD, , , ,name,KYUMOK KIM,name,KYUMOK LEE".split(","));
+        InputManager inputManager = new InputManager(testData);
 
+        Assertions.assertArrayEquals(inputManager.getOptions().toArray(), testData.subList(1, 4).toArray());
+        Assertions.assertEquals(inputManager.getKey(), testData.get(5));
+        Assertions.assertEquals(inputManager.getValue(), testData.get(6));
+        Assertions.assertEquals(inputManager.getChgKey(), testData.get(7));
+        Assertions.assertEquals(inputManager.getChgValue(), testData.get(8));
+    }
+
+    @Test
+    public void getOperatorTest() throws Exception {
+        List<String> testData = Arrays.asList(
+            "MOD, , , ,name,KYUMOK KIM,name,KYUMOK LEE".split(","));
+        InputManager inputManager = new InputManager(testData);
+        Assertions.assertEquals(inputManager.getOperator(), new AddOperator(null));
+        Assertions.assertEquals(inputManager.getOperator(), new DeleteOperator(null, null));
     }
 }
