@@ -1,16 +1,25 @@
 import java.util.List;
 
 public class InputManager {
+
     private final static String ADD = "ADD";
-    private final static String DEL = "ADD";
-    private final static String MOD = "ADD";
-    private final static String SCH = "ADD";
+    private final static String DEL = "DEL";
+    private final static String MOD = "MOD";
+    private final static String SCH = "SCH";
+    private final static String P_OPTION = "-p";
+    private final static String F_OPTION = "-f";
+    private final static String M_OPTION = "-m";
+    private final static String L_OPTION = "-l";
+    private final static String Y_OPTION = "-y";
+    private final static String D_OPTION = "-d";
+
+
     public InputManagerInterface inputManagerInterface;
     private OptionSelector optionSelector;
 
     private boolean pOption = false;
 
-    private void setInputManagerInterface(List<String> data) {
+    public void setInputManagerInterface(List<String> data) {
         String command = data.get(0);
         if (command.equalsIgnoreCase(ADD)) {
             inputManagerInterface = new AddInputManager(data);
@@ -20,13 +29,15 @@ public class InputManager {
             inputManagerInterface = new ModInputManager(data);
         } else if (command.equalsIgnoreCase(SCH)) {
             inputManagerInterface = new SchInputManager(data);
+        } else {
+            throw new InputManagerException("[InputManagerException] Command does not matched, Data: " + data.toString());
         }
     }
 
     private void setOptionSelector(List<String> data) {
         String option1 = data.get(1);
         if (!option1.isEmpty()) {
-            if (option1.equalsIgnoreCase("-p")) {
+            if (option1.equalsIgnoreCase(P_OPTION)) {
                 pOption = true;
             }
         }
@@ -34,39 +45,40 @@ public class InputManager {
         String option2 = data.get(2);
         if (!option2.isEmpty()) {
             String key = data.get(4);
-            if (option2.equalsIgnoreCase("-f")) { // character 'f'
+            String value = data.get(5);
+            if (option2.equalsIgnoreCase(F_OPTION)) { // character 'f'
                 if (key.equalsIgnoreCase("name")) {
-                    optionSelector = new FirstNameOptionSelector();
+                    optionSelector = new FirstNameOptionSelector(value);
                 } else {
-                    //[TBD] error
+                    throw new InputManagerException("[InputManagerException] Option: f, Data: " + data.toString());
                 }
-            } else if (option2.equalsIgnoreCase("-m")) { // character 'm'
+            } else if (option2.equalsIgnoreCase(M_OPTION)) { // character 'm'
                 if (key.equalsIgnoreCase("birthday")) {
-                    optionSelector = new MonthBirthdayOptionSelector();
+                    optionSelector = new MonthBirthDayOptionSelector(value);
                 } else if (key.equalsIgnoreCase("phoneNum")) {
-                    optionSelector = new MidPhoneNumberOptionSelector();
+                    optionSelector = new MidPhoneNumberOptionSelector(value);
                 } else {
-                    //[TBD] error
+                    throw new InputManagerException("[InputManagerException] Option: m, Data: " + data.toString());
                 }
-            } else if (option2.equalsIgnoreCase("-l")) { // character 'l'
+            } else if (option2.equalsIgnoreCase(L_OPTION)) { // character 'l'
                 if (key.equalsIgnoreCase("name")) {
-                    optionSelector = new LastNameOptionSelector();
+                    optionSelector = new LastNameOptionSelector(value);
                 } else if (key.equalsIgnoreCase("phoneNum")) {
-                    optionSelector = new LastPhoneNumberOptionSelector();
+                    optionSelector = new LastPhoneNumberOptionSelector(value);
                 } else {
-                    //[TBD] error
+                    throw new InputManagerException("[InputManagerException] Option: l, Data: " + data.toString());
                 }
-            } else if (option2.equalsIgnoreCase("-y")) { // character 'l'
+            } else if (option2.equalsIgnoreCase(Y_OPTION)) { // character 'y'
                 if (key.equalsIgnoreCase("birthday")) {
-                    optionSelector = new YearBirthdayOptionSelector();
+                    optionSelector = new YearBirthDayOptionSelector(value);
                 } else {
-                    //[TBD] error
+                    throw new InputManagerException("[InputManagerException] Option: y, Data: " + data.toString());
                 }
-            } else if (option2.equalsIgnoreCase("-d")) { // character 'd'
+            } else if (option2.equalsIgnoreCase(D_OPTION)) { // character 'd'
                 if (key.equalsIgnoreCase("birthday")) {
-                    optionSelector = new DayBirthdayOptionSelector();
+                    optionSelector = new DayBirthDayOptionSelector(value);
                 } else {
-                    //[TBD] error
+                    throw new InputManagerException("[InputManagerException] Option: d, Data: " + data.toString());
                 }
             }
         }
@@ -83,13 +95,17 @@ public class InputManager {
 
     public Operator getOperator() {
         if (inputManagerInterface instanceof AddInputManager) {
-            return new AddOperator(this);
+            return new AddOperator(inputManagerInterface.getInfos().get(0),
+                inputManagerInterface.getInfos().get(1), inputManagerInterface.getInfos().get(2),
+                inputManagerInterface.getInfos().get(3), inputManagerInterface.getInfos().get(4),
+                inputManagerInterface.getInfos().get(5));
         } else if (inputManagerInterface instanceof DelInputManager) {
-            return new DeleteOperator(this, optionSelector);
+            return new DeleteOperator();
         } else if (inputManagerInterface instanceof ModInputManager) {
-            return new ModifyOperator(this, optionSelector);
+            return new ModifyOperator(inputManagerInterface.getChgKey(),
+                inputManagerInterface.getChgValue());
         } else if (inputManagerInterface instanceof SchInputManager) {
-            return new SearchOperator(this, optionSelector);
+            return new SearchOperator();
         }
         return null;
     }
