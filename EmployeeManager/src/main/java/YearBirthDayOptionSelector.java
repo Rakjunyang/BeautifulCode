@@ -1,14 +1,14 @@
 public class YearBirthDayOptionSelector implements OptionSelector {
-    String key;
+    EmployeeColumn key;
     String value;
 
     public YearBirthDayOptionSelector(String value){
-        this.key = "birthDay";
+        this.key = EmployeeColumn.BIRTHDAY;
         this.value = value.substring(0, 4);
     }
 
-    public YearBirthDayOptionSelector(String key, String value){
-        this.key = "birthDay";
+    public YearBirthDayOptionSelector(EmployeeColumn key, String value){
+        this.key = EmployeeColumn.BIRTHDAY;
         this.value = value.substring(0, 4);
     }
 
