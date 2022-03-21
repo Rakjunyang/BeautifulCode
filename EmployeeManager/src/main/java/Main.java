@@ -39,7 +39,10 @@ public class Main {
                     inputManager.getOptionSelector());
 
                 ArrayList<Boolean> pOption = new ArrayList<>();
-                pOption.addAll(inputManager.getPOption());
+                for(Boolean val : inputManager.getPOption()){
+                    if(val == null)pOption.add(false);
+                    else pOption.add(val);
+                }
 
                 prevCmd = curCmd;
 
