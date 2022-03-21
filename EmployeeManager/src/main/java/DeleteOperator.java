@@ -1,14 +1,10 @@
 import java.util.ArrayList;
 
-public class DeleteOperator implements Operator {
+public class DeleteOperator extends DefaultOperator {
 
     public DeleteOperator() {
-    }
-
-    private String getMatchedString(Employee employee) {
-        return "DEL,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
-            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
-            "BIRTHDAY") + "," + employee.getValue("CERTI");
+        super();
+        super.setOperatorName("DEL");
     }
 
     @Override
@@ -18,11 +14,10 @@ public class DeleteOperator implements Operator {
         ArrayList<String> deletedEmployeeList = new ArrayList<>();
         for (int i = 0; i < employeeList.size(); i++) {
             if (optionSelector.match(employeeList.get(i))) {
-                deletedEmployeeList.add(getMatchedString(employeeList.get(i)));
+                deletedEmployeeList.add(super.getMatchedString(employeeList.get(i)));
                 employeeManager.del(i--);
             }
         }
-
         return deletedEmployeeList;
     }
 }
