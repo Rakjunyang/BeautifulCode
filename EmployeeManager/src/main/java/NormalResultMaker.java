@@ -1,19 +1,26 @@
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class NormalResultMaker implements ResultMaker {
+public class NormalResultMaker extends NoneExistsResultMaker {
 
-    public NormalResultMaker() {
+    FileManager fileManager;
 
+    public NormalResultMaker(FileManager fileManager) {
+        super();
+        this.fileManager = fileManager;
     }
 
+    public String getCountResult(String operatorName, int count) {
+        return operatorName + "," + count;
+    }
 
     @Override
-    public String getResult(ArrayList<String> matchedEmployeeList, String operatorName) {
+    public void setResult(ArrayList<String> matchedEmployeeList, String operatorName)
+        throws IOException {
 
         if (matchedEmployeeList.isEmpty() || matchedEmployeeList.size() == 0) {
-            return operatorName + "," + "NONE";
+            fileManager.writeOutputFile(super.getNoneResult(operatorName));
         }
-        return operatorName + "," + matchedEmployeeList.size();
+        fileManager.writeOutputFile(getCountResult(operatorName, matchedEmployeeList.size()));
     }
 }

@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 interface ResultMaker {
 
-    String getResult(ArrayList<String> matchedEmployeeList, String operatorName);
+    void setResult(ArrayList<String> matchedEmployeeList, String operatorName) throws IOException;
 
 }
