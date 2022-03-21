@@ -4,12 +4,12 @@ public class MonthBirthDayOptionSelector implements OptionSelector{
 
     public MonthBirthDayOptionSelector(String value){
         this.key = EmployeeColumn.BIRTHDAY;
-        this.value = value.substring(4, 6);
+        this.value = value;
     }
 
     public MonthBirthDayOptionSelector(EmployeeColumn key, String value){
         this.key = EmployeeColumn.BIRTHDAY;
-        this.value = value.substring(4, 6);
+        this.value = value;
     }
 
     @Override

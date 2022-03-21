@@ -4,12 +4,12 @@ public class MidPhoneNumberOptionSelector implements OptionSelector{
 
     public MidPhoneNumberOptionSelector(String value){
         this.key = EmployeeColumn.PHONENUM;
-        this.value = value.split("-")[1];
+        this.value = value;
     }
 
     public MidPhoneNumberOptionSelector(EmployeeColumn key, String value){
         this.key = EmployeeColumn.PHONENUM;
-        this.value = value.split("-")[1];
+        this.value = value;
     }
 
     @Override
