@@ -45,9 +45,9 @@ public class InputManager {
         }
 
         String option2 = data.get(2);
+        String key = data.get(4);
+        String value = data.get(5);
         if (!option2.isEmpty()) {
-            String key = data.get(4);
-            String value = data.get(5);
             if (option2.equalsIgnoreCase(F_OPTION)) { // character 'f'
                 if (key.equalsIgnoreCase("name")) {
                     optionSelector = new FirstNameOptionSelector(value);
@@ -88,6 +88,10 @@ public class InputManager {
                         "[InputManagerException] Option: d, Data: " + data.toString());
                 }
             }
+        }
+
+        if(optionSelector == null){
+            optionSelector = new DefaultOptionSelector(key, value);
         }
     }
 
