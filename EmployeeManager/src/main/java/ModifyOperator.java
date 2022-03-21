@@ -1,17 +1,14 @@
 import java.util.ArrayList;
 
-public class ModifyOperator implements Operator {
+public class ModifyOperator extends DefaultOperator {
 
     private String changeKey;
     private String changeValue;
 
-    private String getMatchedString(Employee employee) {
-        return "MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
-            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
-            "BIRTHDAY") + "," + employee.getValue("CERTI");
-    }
-
     public ModifyOperator(String changeKey, String changeValue) {
+        super();
+        super.setOperatorName("MOD");
+
         this.changeKey = changeKey;
         this.changeValue = changeValue;
     }
@@ -23,7 +20,7 @@ public class ModifyOperator implements Operator {
         ArrayList<String> matchedEmployeeList = new ArrayList<>();
         for (int i = 0; i < employeeList.size(); i++) {
             if (optionSelector.match(employeeList.get(i))) {
-                matchedEmployeeList.add(getMatchedString(employeeList.get(i)));
+                matchedEmployeeList.add(super.getMatchedString(employeeList.get(i)));
                 employeeList.get(i).setValue(changeKey,changeValue);
                 employeeList.set(i,employeeList.get(i));
             }
