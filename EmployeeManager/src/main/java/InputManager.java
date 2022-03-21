@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputManager {
@@ -18,7 +19,7 @@ public class InputManager {
     public InputManagerInterface inputManagerInterface;
     private OptionSelector optionSelector;
 
-    private List<Boolean> pOption = new ArrayList<>(3);
+    private List<Boolean> pOption = new ArrayList<>(Arrays.asList(new Boolean[3]));
 
     public void setInputManagerInterface(List<String> data) {
         String command = data.get(0);
@@ -47,7 +48,7 @@ public class InputManager {
         String option2 = data.get(2);
         String key = data.get(4);
         String value = data.get(5);
-        if (!option2.isEmpty()) {
+        if (!option2.isEmpty() && !option2.equalsIgnoreCase(" ")) {
             if (option2.equalsIgnoreCase(F_OPTION)) { // character 'f'
                 if (key.equalsIgnoreCase("name")) {
                     optionSelector = new FirstNameOptionSelector(value);
