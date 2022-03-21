@@ -6,7 +6,7 @@ public abstract class DefaultOperator implements Operator{
     }
 
     public String getMatchedString(Employee employee) {
-        return this.operatorName + employee.getValue("id") + "," + employee.getValue("NAME") + ","
+        return this.operatorName + "," + employee.getValue("id") + "," + employee.getValue("NAME") + ","
             + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
             "BIRTHDAY") + "," + employee.getValue("CERTI");
     }
