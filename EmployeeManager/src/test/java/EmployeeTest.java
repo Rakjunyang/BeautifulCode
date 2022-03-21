@@ -11,60 +11,56 @@ public class EmployeeTest {
 
     @Test
     void idTest(){
-        Assertions.assertEquals(employee.getValue("id"), "12345678");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.ID), "12345678");
     }
 
     @Test
     void nameTest(){
-        Assertions.assertEquals(employee.getValue("name"), "first last");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.NAME), "first last");
     }
 
     @Test
     void clTest(){
-        Assertions.assertEquals(employee.getValue("cl"), "cl2");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.CL), "cl2");
     }
 
     @Test
     void phoneNumberTest(){
-        Assertions.assertEquals(employee.getValue("phoneNumber"), "010-1234-5678");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.PHONENUM), "010-1234-5678");
     }
 
     @Test
     void birthDayTest(){
-        Assertions.assertEquals(employee.getValue("birthDay"), "19920312");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.BIRTHDAY), "19920312");
     }
 
     @Test
     void certiTest(){
-        Assertions.assertEquals(employee.getValue("certi"), "PRO");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.CERTI), "PRO");
     }
 
-    @Test
-    void wrongKeyTest(){
-        Assertions.assertEquals(employee.getValue("NOKEY"), null);
-    }
 
     @Test
     void setNameTest(){
-        employee.setValue("name", "abc def");
-        Assertions.assertEquals(employee.getValue("name"), "abc def");
+        employee.setValue(EmployeeColumn.NAME, "abc def");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.NAME), "abc def");
     }
 
     @Test
     void setClTest(){
-        employee.setValue("cl", "CL3");
-        Assertions.assertEquals(employee.getValue("CL"), "CL3");
+        employee.setValue(EmployeeColumn.CL, "CL3");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.CL), "CL3");
     }
 
     @Test
     void setBirthDayTest(){
-        employee.setValue("birthday", "20220318");
-        Assertions.assertEquals(employee.getValue("BirthDay"), "20220318");
+        employee.setValue(EmployeeColumn.BIRTHDAY, "20220318");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.BIRTHDAY), "20220318");
     }
 
     @Test
     void setCertiTest(){
-        employee.setValue("certi", "ADV");
-        Assertions.assertEquals(employee.getValue("certi"), "ADV");
+        employee.setValue(EmployeeColumn.CERTI, "ADV");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.CERTI), "ADV");
     }
 }
