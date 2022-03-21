@@ -23,7 +23,6 @@ public class ModifyOperator extends DefaultOperator {
             if (optionSelector.match(employeeList.get(i))) {
                 matchedEmployeeList.add(super.getMatchedString(employeeList.get(i)));
                 employeeList.get(i).setValue(changeKey, changeValue);
-                employeeList.set(i, employeeList.get(i));
             }
         }
 
