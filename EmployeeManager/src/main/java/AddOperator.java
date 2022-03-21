@@ -26,12 +26,10 @@ public class AddOperator implements Operator {
     @Override
     public ArrayList<String> executeOperator(EmployeeManager employeeManager,
         OptionSelector optionSelector) {
-
         Employee employee = new Employee(employeeNum, name, cl, phoneNum, birthday, certi);
-        if (isExistsEmployee(employeeManager.getEmployees())) {
-            return null;
+        if (!isExistsEmployee(employeeManager.getEmployees())) {
+            employeeManager.add(employee);
         }
-        employeeManager.add(employee);
-        return null;
+        return new ArrayList<>();
     }
 }
