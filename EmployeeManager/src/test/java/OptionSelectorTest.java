@@ -47,7 +47,7 @@ public class OptionSelectorTest {
 
     @Test
     void firstNameTest(){
-        OptionSelector optionSelector = new FirstNameOptionSelector("first last");
+        OptionSelector optionSelector = new FirstNameOptionSelector("first");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -61,7 +61,7 @@ public class OptionSelectorTest {
 
     @Test
     void lastNameTest(){
-        OptionSelector optionSelector = new LastNameOptionSelector("first last");
+        OptionSelector optionSelector = new LastNameOptionSelector("last");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -75,7 +75,7 @@ public class OptionSelectorTest {
 
     @Test
     void midPhoneNumberTest(){
-        OptionSelector optionSelector = new MidPhoneNumberOptionSelector("010-1234-5678");
+        OptionSelector optionSelector = new MidPhoneNumberOptionSelector("1234");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -89,7 +89,7 @@ public class OptionSelectorTest {
 
     @Test
     void lastPhoneNumberTest(){
-        OptionSelector optionSelector = new LastPhoneNumberOptionSelector("010-2222-2222");
+        OptionSelector optionSelector = new LastPhoneNumberOptionSelector("2222");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -103,7 +103,7 @@ public class OptionSelectorTest {
 
     @Test
     void YearBirthDayTest(){
-        OptionSelector optionSelector = new YearBirthDayOptionSelector("20220318");
+        OptionSelector optionSelector = new YearBirthDayOptionSelector("2022");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -117,7 +117,7 @@ public class OptionSelectorTest {
 
     @Test
     void MonthBirthDayTest(){
-        OptionSelector optionSelector = new MonthBirthDayOptionSelector("20220318");
+        OptionSelector optionSelector = new MonthBirthDayOptionSelector("03");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -131,7 +131,7 @@ public class OptionSelectorTest {
 
     @Test
     void DayBirthDayTest(){
-        OptionSelector optionSelector = new DayBirthDayOptionSelector("20220318");
+        OptionSelector optionSelector = new DayBirthDayOptionSelector("18");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){

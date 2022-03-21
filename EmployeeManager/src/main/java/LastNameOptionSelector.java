@@ -4,12 +4,12 @@ public class LastNameOptionSelector implements OptionSelector{
 
     public LastNameOptionSelector(String value){
         this.key = EmployeeColumn.NAME;
-        this.value = value.substring(value.indexOf(" ")+1);
+        this.value = value;
     }
 
     public LastNameOptionSelector(EmployeeColumn key, String value){
         this.key = EmployeeColumn.NAME;
-        this.value = value.substring(value.indexOf(" ")+1);
+        this.value = value;
     }
 
     @Override
