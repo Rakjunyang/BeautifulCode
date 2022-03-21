@@ -21,6 +21,9 @@ public class Main {
         }
 
         EmployeeManager employeeManager = new EmployeeManager();
+        ResultMakerFactory resultMakerFactory = new ResultMakerFactory();
+        String prevCmd = "-";
+        String curCmd = null;
 
         while(true){
             String cmd = fileManager.inputBuffer.readLine();
@@ -28,13 +31,22 @@ public class Main {
 
             try {
                 ArrayList<String> data = Parser.parse(cmd);
+                curCmd = data.get(0);
+                if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
+                    employeeManager.sort();
                 InputManager inputManager = new InputManager(data);
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
-                /*
-                ResultWriter resultWriter = new ResultMakerFactory.getResultWriter(fileManager, inputManager.getPOption());
-                resultWriter.write
-                */
+
+                ArrayList<Boolean> pOption = new ArrayList<>();
+                pOption.addAll(inputManager.getPOption());
+
+                prevCmd = curCmd;
+
+                ResultMaker resultMaker = resultMakerFactory.getResultMaker(pOption, fileManager);
+                resultMaker.setResult(result, data.get(0));
+
+
 
             }
             catch (Exception e){
