@@ -39,14 +39,14 @@ public class EmployManagerTest {
     void delTest(){
         ArrayList<Employee> employees = employeeManager.getEmployees();
         int size = employees.size();
-        String id = employees.get(0).getValue(EmployeeColumn.ID);
+        String id = employees.get(0).getValue(EmployeeColumn.EMPLOYEENUM);
         employeeManager.del(0);
         Assertions.assertEquals(employees.size(), size -1);
         
         
         for(Employee employee : employees)
         {
-            Assertions.assertNotEquals(employee.getValue(EmployeeColumn.ID), id);
+            Assertions.assertNotEquals(employee.getValue(EmployeeColumn.EMPLOYEENUM), id);
         }
     }
 
@@ -54,9 +54,9 @@ public class EmployManagerTest {
     void sortTest(){
         ArrayList<Employee> employees = employeeManager.getEmployees();
         employeeManager.sort();
-        int firstId = Integer.parseInt(employees.get(0).getValue(EmployeeColumn.ID));
+        int firstId = Integer.parseInt(employees.get(0).getValue(EmployeeColumn.EMPLOYEENUM));
         int firstSortId = firstId < 30000000 ? 2000000000 + firstId : 1900000000 + firstId;
-        int secondId = Integer.parseInt(employees.get(1).getValue(EmployeeColumn.ID));
+        int secondId = Integer.parseInt(employees.get(1).getValue(EmployeeColumn.EMPLOYEENUM));
         int secondSortId = secondId < 30000000 ? 2000000000 + secondId : 1900000000 + secondId;
         
         Assertions.assertTrue(firstSortId < secondSortId);
