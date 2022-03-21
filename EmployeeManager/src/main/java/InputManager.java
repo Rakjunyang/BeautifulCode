@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputManager {
@@ -17,7 +18,7 @@ public class InputManager {
     public InputManagerInterface inputManagerInterface;
     private OptionSelector optionSelector;
 
-    private boolean pOption = false;
+    private List<Boolean> pOption = new ArrayList<>(3);
 
     public void setInputManagerInterface(List<String> data) {
         String command = data.get(0);
@@ -30,7 +31,8 @@ public class InputManager {
         } else if (command.equalsIgnoreCase(SCH)) {
             inputManagerInterface = new SchInputManager(data);
         } else {
-            throw new InputManagerException("[InputManagerException] Command does not matched, Data: " + data.toString());
+            throw new InputManagerException(
+                "[InputManagerException] Command does not matched, Data: " + data.toString());
         }
     }
 
@@ -38,7 +40,7 @@ public class InputManager {
         String option1 = data.get(1);
         if (!option1.isEmpty()) {
             if (option1.equalsIgnoreCase(P_OPTION)) {
-                pOption = true;
+                pOption.set(0, true);
             }
         }
 
@@ -50,7 +52,8 @@ public class InputManager {
                 if (key.equalsIgnoreCase("name")) {
                     optionSelector = new FirstNameOptionSelector(value);
                 } else {
-                    throw new InputManagerException("[InputManagerException] Option: f, Data: " + data.toString());
+                    throw new InputManagerException(
+                        "[InputManagerException] Option: f, Data: " + data.toString());
                 }
             } else if (option2.equalsIgnoreCase(M_OPTION)) { // character 'm'
                 if (key.equalsIgnoreCase("birthday")) {
@@ -58,7 +61,8 @@ public class InputManager {
                 } else if (key.equalsIgnoreCase("phoneNum")) {
                     optionSelector = new MidPhoneNumberOptionSelector(value);
                 } else {
-                    throw new InputManagerException("[InputManagerException] Option: m, Data: " + data.toString());
+                    throw new InputManagerException(
+                        "[InputManagerException] Option: m, Data: " + data.toString());
                 }
             } else if (option2.equalsIgnoreCase(L_OPTION)) { // character 'l'
                 if (key.equalsIgnoreCase("name")) {
@@ -66,19 +70,22 @@ public class InputManager {
                 } else if (key.equalsIgnoreCase("phoneNum")) {
                     optionSelector = new LastPhoneNumberOptionSelector(value);
                 } else {
-                    throw new InputManagerException("[InputManagerException] Option: l, Data: " + data.toString());
+                    throw new InputManagerException(
+                        "[InputManagerException] Option: l, Data: " + data.toString());
                 }
             } else if (option2.equalsIgnoreCase(Y_OPTION)) { // character 'y'
                 if (key.equalsIgnoreCase("birthday")) {
                     optionSelector = new YearBirthDayOptionSelector(value);
                 } else {
-                    throw new InputManagerException("[InputManagerException] Option: y, Data: " + data.toString());
+                    throw new InputManagerException(
+                        "[InputManagerException] Option: y, Data: " + data.toString());
                 }
             } else if (option2.equalsIgnoreCase(D_OPTION)) { // character 'd'
                 if (key.equalsIgnoreCase("birthday")) {
                     optionSelector = new DayBirthDayOptionSelector(value);
                 } else {
-                    throw new InputManagerException("[InputManagerException] Option: d, Data: " + data.toString());
+                    throw new InputManagerException(
+                        "[InputManagerException] Option: d, Data: " + data.toString());
                 }
             }
         }
@@ -89,7 +96,7 @@ public class InputManager {
         setOptionSelector(data);
     }
 
-    public boolean getPOption() {
+    public List<Boolean> getPOption() {
         return pOption;
     }
 
@@ -133,5 +140,9 @@ public class InputManager {
 
     public String getChgValue() {
         return inputManagerInterface.getChgValue();
+    }
+
+    public OptionSelector getOptionSelector() {
+        return optionSelector;
     }
 }
