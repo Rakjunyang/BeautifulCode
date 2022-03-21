@@ -91,7 +91,7 @@ public class InputManager {
         }
 
         if(optionSelector == null){
-            optionSelector = new DefaultOptionSelector(key, value);
+            optionSelector = new DefaultOptionSelector(EmployeeColumn.getType(key), value);
         }
     }
 

@@ -19,7 +19,7 @@ public class OptionSelectorTest {
 
     @Test
     void idDefaultTest(){
-        OptionSelector optionSelector = new DefaultOptionSelector("id", "12345601");
+        OptionSelector optionSelector = new DefaultOptionSelector(EmployeeColumn.ID, "12345601");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -28,12 +28,12 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 1);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("id"), "12345601");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.ID), "12345601");
     }
 
     @Test
     void clDefaultTest(){
-        OptionSelector optionSelector = new DefaultOptionSelector("cl", "cl4");
+        OptionSelector optionSelector = new DefaultOptionSelector(EmployeeColumn.CL, "cl4");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -42,7 +42,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 1);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("cl"), "cl4");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.CL), "cl4");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 1);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("name").split(" ")[0], "first");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.NAME).split(" ")[0], "first");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 1);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("name").split(" ")[1], "last");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.NAME).split(" ")[1], "last");
     }
 
     @Test
@@ -84,7 +84,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 2);
-        Assertions.assertEquals(matchedEmployees.get(1).getValue("phoneNumber").split("-")[1], "1234");
+        Assertions.assertEquals(matchedEmployees.get(1).getValue(EmployeeColumn.PHONENUM).split("-")[1], "1234");
     }
 
     @Test
@@ -98,7 +98,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 2);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("phoneNumber").split("-")[2], "2222");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.PHONENUM).split("-")[2], "2222");
     }
 
     @Test
@@ -112,7 +112,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 1);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("birthDay"), "20220318");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.BIRTHDAY), "20220318");
     }
 
     @Test
@@ -126,7 +126,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 2);
-        Assertions.assertEquals(matchedEmployees.get(1).getValue("birthDay"), "20220318");
+        Assertions.assertEquals(matchedEmployees.get(1).getValue(EmployeeColumn.BIRTHDAY), "20220318");
     }
 
     @Test
@@ -140,6 +140,6 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 2);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue("birthDay"), "20220318");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.BIRTHDAY), "20220318");
     }
 }

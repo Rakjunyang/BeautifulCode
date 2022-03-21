@@ -7,62 +7,62 @@ public class Employee {
     public int sortKey;
     private String name;
     private String cl;
-    private String phoneNumber;
+    private String phoneNum;
     private String birthDay;
     private String certi;
 
-    public Employee(String id, String name, String cl, String phoneNumber, String birthDay, String certi) {
+    public Employee(String id, String name, String cl, String phoneNum, String birthDay, String certi) {
         this.id = id;
         this.sortKey = Integer.parseInt(id.substring(0, 2)) < 30 ? 2000000000 + Integer.parseInt(id)
             : 1900000000 + Integer.parseInt(id);
         this.name = name;
         this.cl = cl;
-        this.phoneNumber = phoneNumber;
+        this.phoneNum = phoneNum;
         this.birthDay = birthDay;
         this.certi = certi;
     }
 
 
-    public String getValue(String key) {
-        if (key.equalsIgnoreCase("id")) {
+    public String getValue(EmployeeColumn key) {
+        if (key.equals(EmployeeColumn.ID)) {
             return id;
         }
-        if (key.equalsIgnoreCase("NAME")) {
+        if (key.equals(EmployeeColumn.NAME)) {
             return name;
         }
-        if (key.equalsIgnoreCase("CL")) {
+        if (key.equals(EmployeeColumn.CL)) {
             return cl;
         }
-        if (key.equalsIgnoreCase( "PHONENUMBER")) {
-            return phoneNumber;
+        if (key.equals(EmployeeColumn.PHONENUM)) {
+            return phoneNum;
         }
-        if (key.equalsIgnoreCase("BIRTHDAY")) {
+        if (key.equals(EmployeeColumn.BIRTHDAY)) {
             return birthDay;
         }
-        if (key.equalsIgnoreCase("CERTI")) {
+        if (key.equals(EmployeeColumn.CERTI)) {
             return certi;
         }
         return null;
     }
 
-    public void setValue(String key, String value) {
-        if (key.equalsIgnoreCase("NAME")) {
+    public void setValue(EmployeeColumn key, String value) {
+        if (key.equals(EmployeeColumn.NAME)) {
             this.name = value;
             return;
         }
-        if (key.equalsIgnoreCase("CL")) {
+        if (key.equals(EmployeeColumn.CL)) {
             this.cl = value;
             return;
         }
-        if (key.equalsIgnoreCase("PHONENUMBER")) {
-            this.phoneNumber = value;
+        if (key.equals(EmployeeColumn.PHONENUM)) {
+            this.phoneNum = value;
             return;
         }
-        if (key.equalsIgnoreCase( "BIRTHDAY")) {
+        if (key.equals(EmployeeColumn.BIRTHDAY)) {
             this.birthDay = value;
             return;
         }
-        if (key.equalsIgnoreCase("CERTI")) {
+        if (key.equals(EmployeeColumn.CERTI)) {
             this.certi = value;
             return;
         }

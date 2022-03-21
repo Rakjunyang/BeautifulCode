@@ -1,14 +1,14 @@
 public class MidPhoneNumberOptionSelector implements OptionSelector{
-    String key;
+    EmployeeColumn key;
     String value;
 
     public MidPhoneNumberOptionSelector(String value){
-        this.key = "phoneNumber";
+        this.key = EmployeeColumn.PHONENUM;
         this.value = value.split("-")[1];
     }
 
-    public MidPhoneNumberOptionSelector(String key, String value){
-        this.key = "phoneNumber";
+    public MidPhoneNumberOptionSelector(EmployeeColumn key, String value){
+        this.key = EmployeeColumn.PHONENUM;
         this.value = value.split("-")[1];
     }
 

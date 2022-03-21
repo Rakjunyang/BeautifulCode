@@ -1,9 +1,9 @@
 public class DefaultOptionSelector implements OptionSelector {
 
-    String key;
+    EmployeeColumn key;
     String value;
 
-    public DefaultOptionSelector(String key, String value) {
+    public DefaultOptionSelector(EmployeeColumn key, String value) {
         this.key = key;
         this.value = value;
     }

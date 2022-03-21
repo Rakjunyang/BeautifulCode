@@ -1,14 +1,14 @@
 public class LastPhoneNumberOptionSelector implements OptionSelector{
-    String key;
+    EmployeeColumn key;
     String value;
 
     public LastPhoneNumberOptionSelector(String value){
-        this.key = "phoneNumber";
+        this.key = EmployeeColumn.PHONENUM;
         this.value = value.split("-")[2];
     }
 
-    public LastPhoneNumberOptionSelector(String key, String value){
-        this.key = "phoneNumber";
+    public LastPhoneNumberOptionSelector(EmployeeColumn key, String value){
+        this.key = EmployeeColumn.PHONENUM;
         this.value = value.split("-")[2];
     }
 
