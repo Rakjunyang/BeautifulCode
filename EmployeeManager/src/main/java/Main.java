@@ -5,6 +5,7 @@ public class Main {
     public static void main(String [] args) throws IOException {
         String inputFileName;
         String outputFileName;
+        
         if (args.length == 2) {
             inputFileName = args[0];
             outputFileName = args[1];
@@ -13,6 +14,7 @@ public class Main {
             System.out.println("[Invalid Argument] EmployeeManager.exe 'inputText.txt' 'outputText.txt'");
             return;
         }
+
 
         FileManager fileManager = new FileManager(inputFileName, outputFileName);
         if (!fileManager.init()){

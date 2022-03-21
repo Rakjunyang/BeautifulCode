@@ -17,6 +17,7 @@ public class NormalResultMaker extends NoneExistsResultMaker {
     @Override
     public void setResult(ArrayList<String> matchedEmployeeList, String operatorName)
         throws IOException {
+        if(operatorName.equals("ADD")) return;
 
         if (matchedEmployeeList.isEmpty() || matchedEmployeeList.size() == 0) {
             fileManager.writeOutputFile(super.getNoneResult(operatorName));
