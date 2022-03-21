@@ -2,14 +2,14 @@ import java.util.List;
 
 public class DelInputManager implements InputManagerInterface {
 
-    List<String> Options;
-    String Key;
-    String Value;
+    List<String> options;
+    String key;
+    String value;
 
     DelInputManager(List<String> data) {
-        Options = data.subList(1, 4);
-        Key = data.get(4);
-        Value = data.get(5);
+        options = data.subList(1, 4);
+        key = data.get(4);
+        value = data.get(5);
     }
 
     @Override
@@ -19,17 +19,17 @@ public class DelInputManager implements InputManagerInterface {
 
     @Override
     public List<String> getOptions() {
-        return Options;
+        return options;
     }
 
     @Override
     public String getKey() {
-        return Key;
+        return key;
     }
 
     @Override
     public String getValue() {
-        return Value;
+        return value;
     }
 
     @Override
