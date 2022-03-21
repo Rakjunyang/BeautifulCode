@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 interface ResultMaker {
 
-    String getResult(ArrayList<String> matchedEmployeeList);
+    String getResult(ArrayList<String> matchedEmployeeList, String operatorName);
 
-    String getContents(ArrayList<String> matchedEmployeeList);
 }
