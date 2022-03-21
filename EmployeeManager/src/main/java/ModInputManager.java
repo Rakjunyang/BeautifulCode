@@ -2,18 +2,18 @@ import java.util.List;
 
 public class ModInputManager implements InputManagerInterface {
 
-    List<String> Options;
-    String Key;
-    String Value;
-    String ChgKey;
-    String ChgValue;
+    List<String> options;
+    String key;
+    String value;
+    String chgKey;
+    String chgValue;
 
     ModInputManager(List<String> data) {
-        Options = data.subList(1, 4);
-        Key = data.get(4);
-        Value = data.get(5);
-        ChgKey = data.get(6);
-        ChgValue = data.get(7);
+        options = data.subList(1, 4);
+        key = data.get(4);
+        value = data.get(5);
+        chgKey = data.get(6);
+        chgValue = data.get(7);
 
     }
 
@@ -24,24 +24,24 @@ public class ModInputManager implements InputManagerInterface {
 
     @Override
     public List<String> getOptions() {
-        return Options;
+        return options;
     }
     @Override
     public String getKey() {
-        return Key;
+        return key;
     }
     @Override
     public String getValue() {
-        return Value;
+        return value;
     }
 
     @Override
     public String getChgKey() {
-        return ChgKey;
+        return chgKey;
     }
 
     @Override
     public String getChgValue() {
-        return ChgValue;
+        return chgValue;
     }
 }
