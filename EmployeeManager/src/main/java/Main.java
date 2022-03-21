@@ -3,8 +3,16 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String [] args) throws IOException {
-        String inputFileName = args[0];
-        String outputFileName = args[1];
+        String inputFileName;
+        String outputFileName;
+        if (args.length == 2) {
+            inputFileName = args[0];
+            outputFileName = args[1];
+        }
+        else{
+            System.out.println("[Invalid Argument] EmployeeManager.exe 'inputText.txt' 'outputText.txt'");
+            return;
+        }
 
         FileManager fileManager = new FileManager(inputFileName, outputFileName);
         if (!fileManager.init()){
