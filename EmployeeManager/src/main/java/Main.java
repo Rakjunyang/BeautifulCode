@@ -24,14 +24,13 @@ public class Main {
             String cmd = fileManager.inputBuffer.readLine();
             if (cmd == null) break;
 
-            ArrayList<String> data = Parser.parse(cmd);
-            if (data == null) {
-                System.out.println("Command에 허용되지 않은 문자가 존재합니다.");
-                break;
+            try {
+                ArrayList<String> data = Parser.parse(cmd);
             }
-
+            catch (IllegalArgumentException e){
+                continue;
+            }
         }
         fileManager.closeFile();
-
     }
 }
