@@ -9,7 +9,8 @@ public class SearchOperator extends DefaultOperator {
     }
 
     @Override
-    public ArrayList<String> executeOperator(EmployeeManager employeeManager, OptionSelector optionSelector) {
+    public ArrayList<String> executeOperator(EmployeeManager employeeManager,
+        OptionSelector optionSelector) {
         ArrayList<Employee> employeeList = employeeManager.getEmployees();
         ArrayList<String> matchedEmployeeList = new ArrayList<>();
         for (int i = 0; i < employeeList.size(); i++) {
