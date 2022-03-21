@@ -1,5 +1,5 @@
 import java.util.ArrayList;
 
 interface Operator{
-    String executeOperator();
+    ArrayList<String> executeOperator(EmployeeManager employeeManager, OptionSelector optionSelector);
 }

@@ -1,15 +1,37 @@
+import java.util.ArrayList;
+
 public class ModifyOperator implements Operator {
 
-    InputManager inputManager;
-    OptionSelector optionSelector;
+    private String changeKey;
+    private String changeValue;
 
-    public ModifyOperator(InputManager inputManager, OptionSelector optionSelector) {
-        this.inputManager = inputManager;
-        this.optionSelector = optionSelector;
+    private String getMatchedString(Employee employee) {
+        return "MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
+            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
+            "BIRTHDAY") + "," + employee.getValue("CERTI");
+    }
+
+    public ModifyOperator(String changeKey, String changeValue) {
+        this.changeKey = changeKey;
+        this.changeValue = changeValue;
     }
 
     @Override
-    public String executeOperator() {
-        return null;
+    public ArrayList<String> executeOperator(EmployeeManager employeeManager, OptionSelector optionSelector) {
+
+        ArrayList<Employee> employeeList = employeeManager.getEmployees();
+        ArrayList<String> matchedEmployeeList = new ArrayList<>();
+        for (int i = 0; i < employeeList.size(); i++) {
+            if (optionSelector.match(employeeList.get(i))) {
+                matchedEmployeeList.add(getMatchedString(employeeList.get(i)));
+                employeeList.get(i).setValue(changeKey,changeValue);
+                employeeList.set(i,employeeList.get(i));
+            }
+        }
+
+        return matchedEmployeeList;
     }
+
+
+
 }
