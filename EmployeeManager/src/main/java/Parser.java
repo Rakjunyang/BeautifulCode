@@ -42,10 +42,10 @@ public class Parser {
         supportOptions.add(new ArrayList<>(Arrays.asList("-f", "-l", "-m", "-y", "-d", " ")));
         supportOptions.add(new ArrayList<>(Arrays.asList(" ")));
 
-        if (!isValidPattern(str)) return null;
-        if (!isValidOperation(parseResult.get(0))) return null;
-        if (!isValidLength(parseResult, supportOptions.size())) return null;
-        if (!isValidOption(parseResult, supportOptions)) return null;
+        if (!isValidPattern(str)) throw new IllegalArgumentException("[invalid pattern] " + str);
+        if (!isValidOperation(parseResult.get(0))) throw new IllegalArgumentException("[invalid operation] " + str);
+        if (!isValidLength(parseResult, supportOptions.size())) throw new IllegalArgumentException("[invalid data length] " + str);
+        if (!isValidOption(parseResult, supportOptions)) throw new IllegalArgumentException("[invalid option] " + str);
 
         return parseResult;
     }
