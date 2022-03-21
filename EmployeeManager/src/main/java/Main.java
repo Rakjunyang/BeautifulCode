@@ -20,16 +20,28 @@ public class Main {
             return;
         }
 
+        EmployeeManager employeeManager = new EmployeeManager();
+
         while(true){
             String cmd = fileManager.inputBuffer.readLine();
             if (cmd == null) break;
 
             try {
                 ArrayList<String> data = Parser.parse(cmd);
+                InputManager inputManager = new InputManager(data);
+                ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
+                    inputManager.getOptionSelector());
+                /*
+                ResultWriter resultWriter = new ResultMakerFactory.getResultWriter(fileManager, inputManager.getPOption());
+                resultWriter.write
+                */
+
             }
-            catch (IllegalArgumentException e){
+            catch (Exception e){
                 continue;
             }
+
+
         }
         fileManager.closeFile();
     }

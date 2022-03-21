@@ -20,7 +20,7 @@ public class AddOperator implements Operator {
     }
 
     private boolean isExistsEmployee(ArrayList<Employee> employees) {
-        return employees.stream().anyMatch(employee -> employee.getValue("id").equals(employeeNum));
+        return employees.stream().anyMatch(employee -> employee.getValue(EmployeeColumn.ID).equals(employeeNum));
     }
 
     @Override

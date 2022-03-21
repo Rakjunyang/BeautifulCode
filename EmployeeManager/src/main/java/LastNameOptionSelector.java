@@ -1,15 +1,15 @@
 public class LastNameOptionSelector implements OptionSelector{
-    String key;
+    EmployeeColumn key;
     String value;
 
     public LastNameOptionSelector(String value){
-        this.key = "name";
-        this.value = value.substring(value.indexOf(" ")+1);
+        this.key = EmployeeColumn.NAME;
+        this.value = value;
     }
 
-    public LastNameOptionSelector(String key, String value){
-        this.key = "name";
-        this.value = value.substring(value.indexOf(" ")+1);
+    public LastNameOptionSelector(EmployeeColumn key, String value){
+        this.key = EmployeeColumn.NAME;
+        this.value = value;
     }
 
     @Override
