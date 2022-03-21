@@ -20,6 +20,7 @@ public class NormalResultMaker extends NoneExistsResultMaker {
 
         if (matchedEmployeeList.isEmpty() || matchedEmployeeList.size() == 0) {
             fileManager.writeOutputFile(super.getNoneResult(operatorName));
+            return;
         }
         fileManager.writeOutputFile(getCountResult(operatorName, matchedEmployeeList.size()));
     }
