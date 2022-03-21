@@ -14,19 +14,27 @@ public class OperatorTest {
     static Employee employee;
     static Employee employee2;
     static OptionSelector optionSelector;
+
     @BeforeAll
-    static void setEmployee(){
-        employee = new Employee("08117441","BMU MPOSXU","CL3","010-2703-3153","20010215","ADV");
-        employee2 = new Employee("96548512","ASER ZCDEU","CL2","010-2124-5333","19780721","ADV");
+    static void setEmployee() {
+        employee = new Employee("08117441", "BMU MPOSXU", "CL3", "010-2703-3153", "20010215",
+            "ADV");
+        employee2 = new Employee("96548512", "ASER ZCDEU", "CL2", "010-2124-5333", "19780721",
+            "ADV");
         optionSelector = mock(OptionSelector.class);
         when(optionSelector.match(employee)).thenReturn(true);
         when(optionSelector.match(employee2)).thenReturn(true);
     }
 
     @Test
-    void addExecuteOperatorTest (){
-        Operator addOperator = new AddOperator("08117441","BMU MPOSXU","CL3","010-2703-3153","20010215","ADV");
-        addOperator.executeOperator(mock(EmployeeManager.class),mock(OptionSelector.class));
+    void addExecuteOperatorTest() {
+        EmployeeManager employeeManager = new EmployeeManager();
+        Operator addOperator = new AddOperator("08117441", "BMU MPOSXU", "CL3", "010-2703-3153",
+            "20010215", "ADV");
+        addOperator.executeOperator(employeeManager, optionSelector);
+        assertEquals(employeeManager.getEmployees().size(),1);
+        addOperator.executeOperator(employeeManager, optionSelector);
+        assertEquals(employeeManager.getEmployees().size(),1);
     }
 
     @Test
@@ -34,18 +42,22 @@ public class OperatorTest {
         EmployeeManager employeeManager = new EmployeeManager();
 
         ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("DEL,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
-            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
+        matchedStrList.add("DEL," + employee.getValue("id") + "," + employee.getValue("NAME") + ","
+            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + ","
+            + employee.getValue(
             "BIRTHDAY") + "," + employee.getValue("CERTI"));
-        matchedStrList.add("DEL,"+ employee2.getValue("id") + "," + employee2.getValue("NAME") + ","
-            + employee2.getValue("CL") + "," + employee2.getValue("PHONENUMBER") + "," + employee2.getValue(
-            "BIRTHDAY") + "," + employee2.getValue("CERTI"));
+        matchedStrList.add(
+            "DEL," + employee2.getValue("id") + "," + employee2.getValue("NAME") + ","
+                + employee2.getValue("CL") + "," + employee2.getValue("PHONENUMBER") + ","
+                + employee2.getValue(
+                "BIRTHDAY") + "," + employee2.getValue("CERTI"));
 
         employeeManager.add(employee);
         employeeManager.add(employee2);
         Operator deleteOperator = new DeleteOperator();
 
-        assertEquals(deleteOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
+        assertEquals(deleteOperator.executeOperator(employeeManager, optionSelector),
+            matchedStrList);
     }
 
     @Test
@@ -55,12 +67,15 @@ public class OperatorTest {
         Operator modifyOperator = new ModifyOperator("PHONENUMBER", "010-3458-5111");
 
         ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("MOD,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
-            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
+        matchedStrList.add("MOD," + employee.getValue("id") + "," + employee.getValue("NAME") + ","
+            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + ","
+            + employee.getValue(
             "BIRTHDAY") + "," + employee.getValue("CERTI"));
 
-        assertEquals(modifyOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
-        assertEquals(employeeManager.getEmployees().get(0).getValue("PHONENUMBER"),"010-3458-5111");
+        assertEquals(modifyOperator.executeOperator(employeeManager, optionSelector),
+            matchedStrList);
+        assertEquals(employeeManager.getEmployees().get(0).getValue("PHONENUMBER"),
+            "010-3458-5111");
     }
 
     @Test
@@ -71,9 +86,11 @@ public class OperatorTest {
         employeeManager.add(employee);
 
         ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("SCH,"+ employee.getValue("id") + "," + employee.getValue("NAME") + ","
-            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + "," + employee.getValue(
+        matchedStrList.add("SCH," + employee.getValue("id") + "," + employee.getValue("NAME") + ","
+            + employee.getValue("CL") + "," + employee.getValue("PHONENUMBER") + ","
+            + employee.getValue(
             "BIRTHDAY") + "," + employee.getValue("CERTI"));
-        assertEquals(searchOperator.executeOperator(employeeManager,optionSelector),matchedStrList);
+        assertEquals(searchOperator.executeOperator(employeeManager, optionSelector),
+            matchedStrList);
     }
 }
