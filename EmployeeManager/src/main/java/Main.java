@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String [] args) throws IOException {
@@ -14,10 +15,15 @@ public class Main {
         while(true){
             String cmd = fileManager.inputBuffer.readLine();
             if (cmd == null) break;
-            Parser.parse(cmd);
 
-            // TODO: execute
+            ArrayList<String> data = Parser.parse(cmd);
+            if (data == null) {
+                System.out.println("Command에 허용되지 않은 문자가 존재합니다.");
+                break;
+            }
+
         }
         fileManager.closeFile();
+
     }
 }

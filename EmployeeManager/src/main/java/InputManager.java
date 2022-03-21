@@ -1,8 +1,10 @@
-package InputManager;
-
 import java.util.List;
 
 public class InputManager {
+    private final static String ADD = "ADD";
+    private final static String DEL = "ADD";
+    private final static String MOD = "ADD";
+    private final static String SCH = "ADD";
     public InputManagerInterface inputManagerInterface;
     private OptionSelector optionSelector;
 
@@ -10,13 +12,13 @@ public class InputManager {
 
     private void setInputManagerInterface(List<String> data) {
         String command = data.get(0);
-        if (command.equalsIgnoreCase("ADD")) {
+        if (command.equalsIgnoreCase(ADD)) {
             inputManagerInterface = new AddInputManager(data);
-        } else if (command.equalsIgnoreCase("DEL")) {
+        } else if (command.equalsIgnoreCase(DEL)) {
             inputManagerInterface = new DelInputManager(data);
-        } else if (command.equalsIgnoreCase("MOD")) {
+        } else if (command.equalsIgnoreCase(MOD)) {
             inputManagerInterface = new ModInputManager(data);
-        } else if (command.equalsIgnoreCase("SCH")) {
+        } else if (command.equalsIgnoreCase(SCH)) {
             inputManagerInterface = new SchInputManager(data);
         }
     }
@@ -80,6 +82,40 @@ public class InputManager {
     }
 
     public Operator getOperator() {
-        return inputManagerInterface.getOperator(optionSelector);
+        if (inputManagerInterface instanceof AddInputManager) {
+            return new AddOperator(this);
+        } else if (inputManagerInterface instanceof DelInputManager) {
+            return new DeleteOperator(this, optionSelector);
+        } else if (inputManagerInterface instanceof ModInputManager) {
+            return new ModifyOperator(this, optionSelector);
+        } else if (inputManagerInterface instanceof SchInputManager) {
+            return new SearchOperator(this, optionSelector);
+        }
+        return null;
+    }
+
+
+    public List<String> getInfos() {
+        return inputManagerInterface.getInfos();
+    }
+
+    public List<String> getOptions() {
+        return inputManagerInterface.getOptions();
+    }
+
+    public String getKey() {
+        return inputManagerInterface.getKey();
+    }
+
+    public String getValue() {
+        return inputManagerInterface.getValue();
+    }
+
+    public String getChgKey() {
+        return inputManagerInterface.getChgKey();
+    }
+
+    public String getChgValue() {
+        return inputManagerInterface.getChgValue();
     }
 }
