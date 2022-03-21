@@ -10,7 +10,7 @@ public class AddInputManager implements InputManagerInterface {
 
     @Override
     public List<String> getInfos() {
-        return null;
+        return infos;
     }
 
     @Override
