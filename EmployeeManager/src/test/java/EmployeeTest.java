@@ -11,7 +11,7 @@ public class EmployeeTest {
 
     @Test
     void idTest(){
-        Assertions.assertEquals(employee.getValue(EmployeeColumn.ID), "12345678");
+        Assertions.assertEquals(employee.getValue(EmployeeColumn.EMPLOYEENUM), "12345678");
     }
 
     @Test

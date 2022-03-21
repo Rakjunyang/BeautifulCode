@@ -19,7 +19,7 @@ public class OptionSelectorTest {
 
     @Test
     void idDefaultTest(){
-        OptionSelector optionSelector = new DefaultOptionSelector(EmployeeColumn.ID, "12345601");
+        OptionSelector optionSelector = new DefaultOptionSelector(EmployeeColumn.EMPLOYEENUM, "12345601");
         ArrayList<Employee> matchedEmployees = new ArrayList<>();
 
         for(Employee employee : employees){
@@ -28,7 +28,7 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 1);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.ID), "12345601");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.EMPLOYEENUM), "12345601");
     }
 
     @Test

@@ -42,12 +42,12 @@ public class OperatorTest {
         EmployeeManager employeeManager = new EmployeeManager();
 
         ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("DEL," + employee.getValue(EmployeeColumn.ID) + "," + employee.getValue(EmployeeColumn.NAME) + ","
+        matchedStrList.add("DEL," + employee.getValue(EmployeeColumn.EMPLOYEENUM) + "," + employee.getValue(EmployeeColumn.NAME) + ","
             + employee.getValue(EmployeeColumn.CL) + "," + employee.getValue(EmployeeColumn.PHONENUM) + ","
             + employee.getValue(
             EmployeeColumn.BIRTHDAY) + "," + employee.getValue(EmployeeColumn.CERTI));
         matchedStrList.add(
-            "DEL," + employee2.getValue(EmployeeColumn.ID) + "," + employee2.getValue(EmployeeColumn.NAME) + ","
+            "DEL," + employee2.getValue(EmployeeColumn.EMPLOYEENUM) + "," + employee2.getValue(EmployeeColumn.NAME) + ","
                 + employee2.getValue(EmployeeColumn.CL) + "," + employee2.getValue(EmployeeColumn.PHONENUM) + ","
                 + employee2.getValue(
                 EmployeeColumn.BIRTHDAY) + "," + employee2.getValue(EmployeeColumn.CERTI));
@@ -67,7 +67,7 @@ public class OperatorTest {
         Operator modifyOperator = new ModifyOperator("PhoneNum", "010-3458-5111");
 
         ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("MOD," + employee.getValue(EmployeeColumn.ID) + "," + employee.getValue(EmployeeColumn.NAME) + ","
+        matchedStrList.add("MOD," + employee.getValue(EmployeeColumn.EMPLOYEENUM) + "," + employee.getValue(EmployeeColumn.NAME) + ","
             + employee.getValue(EmployeeColumn.CL) + "," + employee.getValue(EmployeeColumn.PHONENUM) + ","
             + employee.getValue(
             EmployeeColumn.BIRTHDAY) + "," + employee.getValue(EmployeeColumn.CERTI));
@@ -86,7 +86,7 @@ public class OperatorTest {
         employeeManager.add(employee);
 
         ArrayList<String> matchedStrList = new ArrayList<>();
-        matchedStrList.add("SCH," + employee.getValue(EmployeeColumn.ID) + "," + employee.getValue(EmployeeColumn.NAME) + ","
+        matchedStrList.add("SCH," + employee.getValue(EmployeeColumn.EMPLOYEENUM) + "," + employee.getValue(EmployeeColumn.NAME) + ","
             + employee.getValue(EmployeeColumn.CL) + "," + employee.getValue(EmployeeColumn.PHONENUM) + ","
             + employee.getValue(
             EmployeeColumn.BIRTHDAY) + "," + employee.getValue(EmployeeColumn.CERTI));
