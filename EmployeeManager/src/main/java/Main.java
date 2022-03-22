@@ -33,10 +33,12 @@ public class Main {
 
             try {
                 ArrayList<String> data = Parser.parse(cmd);
-                curCmd = data.get(0);
+                InputManager inputManager = new InputManager(data);
+                
+                curCmd = inputManager.getCommand();
                 if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
                     employeeManager.sort();
-                InputManager inputManager = new InputManager(data);
+                
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
 
@@ -49,7 +51,7 @@ public class Main {
                 prevCmd = curCmd;
 
                 ResultMaker resultMaker = resultMakerFactory.getResultMaker(pOption, fileManager);
-                resultMaker.setResult(result, data.get(0));
+                resultMaker.setResult(result, inputManager.getCommand());
 
 
 
