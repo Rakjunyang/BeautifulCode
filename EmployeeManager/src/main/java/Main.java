@@ -32,12 +32,9 @@ public class Main {
             if (cmd == null) break;
 
             try {
-                ArrayList<String> data = Parser.parse(cmd);
-
-                InputManager inputManager = new InputManager(data);
+                InputManager inputManager = new InputManager(Parser.parse(cmd));
 
                 curCmd = inputManager.getCommand();
-
                 if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
                     employeeManager.sort();
 
@@ -47,7 +44,7 @@ public class Main {
                 prevCmd = curCmd;
 
                 ResultMaker resultMaker = resultMakerFactory.getResultMaker(inputManager.getPOption(), fileManager);
-                resultMaker.setResult(result, curCmd);
+                resultMaker.setResult(result, inputManager.getCommand());
             }
             catch (Exception e){
                 continue;
