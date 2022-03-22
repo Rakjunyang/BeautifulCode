@@ -1,15 +1,29 @@
 import java.util.List;
 
 public interface InputManagerInterface {
-    List<String> getInfos();
 
-    List<String> getOptions();
+    default List<String> getInfos() {
+        return null;
+    }
 
-    String getKey();
+    default List<String> getOptions() {
+        return null;
+    }
 
-    String getValue();
+    default String getKey() {
+        return null;
+    }
 
-    String getChgKey();
+    default String getValue() {
+        return null;
+    }
 
-    String getChgValue();
+    default String getChgKey() {
+        return null;
+    }
+
+    default String getChgValue() {
+        return null;
+    }
+
 }
