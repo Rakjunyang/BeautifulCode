@@ -55,7 +55,8 @@ public class EmployManagerTest {
     @Test
     void sortTest(){
         ArrayList<Employee> employees = employeeManager.getEmployees();
-        employeeManager.sort();
+        employeeManager.sort("ADD");
+        employeeManager.sort("MOD");
         int firstId = Integer.parseInt(employees.get(0).getValue(EmployeeColumn.EMPLOYEENUM));
         int firstSortId = firstId < 30000000 ? 2000000000 + firstId : 1900000000 + firstId;
         int secondId = Integer.parseInt(employees.get(1).getValue(EmployeeColumn.EMPLOYEENUM));

@@ -13,7 +13,8 @@ public class OptionSelectorTest {
         employeeManager.add(new Employee("12345600", "first last",  "cl2", "010-1234-5678", "19920312", "PRO"));
         employeeManager.add(new Employee("12345601", "abc def",  "cl3", "010-1234-2222", "20220318", "ADV"));
         employeeManager.add(new Employee("00111234", "one man",  "cl4", "010-2222-2222", "19700018", "ADV"));
-        employeeManager.sort();
+        employeeManager.sort("ADD");
+        employeeManager.sort("SCH");
         employees = employeeManager.getEmployees();
     }
 
