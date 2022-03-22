@@ -18,7 +18,7 @@ public class Main {
 
         FileManager fileManager = new FileManager(inputFileName, outputFileName);
         if (!fileManager.init()){
-            System.out.println("Input 파일이 존재하지 않거나, Output 파일이 이미 존재합니다.");
+            System.out.println("[File Init Error] Failed to initialize input and output files");
             return;
         }
 
