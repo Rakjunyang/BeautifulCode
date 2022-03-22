@@ -4,6 +4,7 @@ import java.util.Collections;
 public class EmployeeManager {
 
     private ArrayList<Employee> employees = new ArrayList<>();
+    private String prevCmd = "-";
 
     public void add(Employee employee) {
         employees.add(employee);
@@ -17,7 +18,9 @@ public class EmployeeManager {
         employees.remove(i);
     }
 
-    public void sort() {
-        Collections.sort(employees, new EmployeeComparer());
+    public void sort(String cmd) {
+        if(prevCmd.equals("ADD") && !cmd.equals("ADD"))
+            Collections.sort(employees, new EmployeeComparer());
+        prevCmd = cmd;
     }
 }
