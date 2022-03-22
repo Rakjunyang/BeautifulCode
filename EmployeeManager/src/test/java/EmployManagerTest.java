@@ -16,9 +16,11 @@ public class EmployManagerTest {
         Employee employee1 = new Employee("12345600", "first last",  "cl2", "010-1234-5678", "19920312", "PRO");
         Employee employee2 = new Employee("12345601", "abc def",  "cl3", "010-1111-2222", "20120101", "ADV");
         Employee employee3 = new Employee("00111234", "one man",  "cl4", "010-2222-3333", "19700000", "ADV");
+        Employee employee4 = new Employee("99111234", "principle engineer",  "cl4", "010-9999-9999", "19680000", "ADV");
         employeeManager.add(employee1);
         employeeManager.add(employee2);
         employeeManager.add(employee3);
+        employeeManager.add(employee4);
     }
 
     @Test
