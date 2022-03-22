@@ -16,8 +16,7 @@ public class Parser {
     private static boolean isValidLength(ArrayList<String> inputList, int optionLength){
         String operation = inputList.get(0).toUpperCase();
 
-        // TODO: 컬럼이 추가되지는 않을까요? parser가 아닌 데이터를 관리하는 쪽으로 이동?
-        if (operation.equals("ADD")) return inputList.size() == (1 + optionLength + 6);
+        if (operation.equals("ADD")) return inputList.size() == (1 + optionLength + EmployeeColumn.values().length);
         else if (operation.equals("SCH")) return inputList.size() == (1 + optionLength + 2);
         else if (operation.equals("MOD")) return inputList.size() == (1 + optionLength + 4);
         else if (operation.equals("DEL")) return inputList.size() == (1 + optionLength + 2);

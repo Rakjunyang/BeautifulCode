@@ -33,6 +33,7 @@ public class FileManager {
 
     public boolean createOutputFile() throws IOException {
         File file = new File(outputFileName);
+        file.delete();
         return file.createNewFile();
     }
 

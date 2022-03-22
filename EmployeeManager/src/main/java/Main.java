@@ -5,6 +5,7 @@ public class Main {
     public static void main(String [] args) throws IOException {
         String inputFileName;
         String outputFileName;
+
         if (args.length == 2) {
             inputFileName = args[0];
             outputFileName = args[1];
@@ -14,34 +15,40 @@ public class Main {
             return;
         }
 
+
         FileManager fileManager = new FileManager(inputFileName, outputFileName);
         if (!fileManager.init()){
-            System.out.println("Input 파일이 존재하지 않거나, Output 파일이 이미 존재합니다.");
+            System.out.println("[File Init Error] Failed to initialize input and output files");
             return;
         }
 
         EmployeeManager employeeManager = new EmployeeManager();
+        ResultMakerFactory resultMakerFactory = new ResultMakerFactory();
+        String prevCmd = "-";
+        String curCmd = null;
 
         while(true){
             String cmd = fileManager.inputBuffer.readLine();
             if (cmd == null) break;
 
             try {
-                ArrayList<String> data = Parser.parse(cmd);
-                InputManager inputManager = new InputManager(data);
+                InputManager inputManager = new InputManager(Parser.parse(cmd));
+
+                curCmd = inputManager.getCommand();
+                if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
+                    employeeManager.sort();
+
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
-                /*
-                ResultWriter resultWriter = new ResultMakerFactory.getResultWriter(fileManager, inputManager.getPOption());
-                resultWriter.write
-                */
 
+                prevCmd = curCmd;
+
+                ResultMaker resultMaker = resultMakerFactory.getResultMaker(inputManager.getPOption(), fileManager);
+                resultMaker.setResult(result, inputManager.getCommand());
             }
             catch (Exception e){
                 continue;
             }
-
-
         }
         fileManager.closeFile();
     }

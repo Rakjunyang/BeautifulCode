@@ -20,18 +20,16 @@ public class AddOperator implements Operator {
     }
 
     private boolean isExistsEmployee(ArrayList<Employee> employees) {
-        return employees.stream().anyMatch(employee -> employee.getValue(EmployeeColumn.ID).equals(employeeNum));
+        return employees.stream().anyMatch(employee -> employee.getValue(EmployeeColumn.EMPLOYEENUM).equals(employeeNum));
     }
 
     @Override
     public ArrayList<String> executeOperator(EmployeeManager employeeManager,
         OptionSelector optionSelector) {
-
         Employee employee = new Employee(employeeNum, name, cl, phoneNum, birthday, certi);
-        if (isExistsEmployee(employeeManager.getEmployees())) {
-            return null;
+        if (!isExistsEmployee(employeeManager.getEmployees())) {
+            employeeManager.add(employee);
         }
-        employeeManager.add(employee);
-        return null;
+        return new ArrayList<>();
     }
 }

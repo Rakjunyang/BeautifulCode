@@ -3,7 +3,7 @@ import java.util.Locale;
 
 public class Employee {
 
-    private String id;
+    private String employeeNum;
     public int sortKey;
     private String name;
     private String cl;
@@ -11,10 +11,10 @@ public class Employee {
     private String birthDay;
     private String certi;
 
-    public Employee(String id, String name, String cl, String phoneNum, String birthDay, String certi) {
-        this.id = id;
-        this.sortKey = Integer.parseInt(id.substring(0, 2)) < 30 ? 2000000000 + Integer.parseInt(id)
-            : 1900000000 + Integer.parseInt(id);
+    public Employee(String employeeNum, String name, String cl, String phoneNum, String birthDay, String certi) {
+        this.employeeNum = employeeNum;
+        this.sortKey = Integer.parseInt(employeeNum.substring(0, 2)) < 30 ? 2000000000 + Integer.parseInt(employeeNum)
+            : 1900000000 + Integer.parseInt(employeeNum);
         this.name = name;
         this.cl = cl;
         this.phoneNum = phoneNum;
@@ -24,8 +24,8 @@ public class Employee {
 
 
     public String getValue(EmployeeColumn key) {
-        if (key.equals(EmployeeColumn.ID)) {
-            return id;
+        if (key.equals(EmployeeColumn.EMPLOYEENUM)) {
+            return employeeNum;
         }
         if (key.equals(EmployeeColumn.NAME)) {
             return name;
