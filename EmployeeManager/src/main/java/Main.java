@@ -5,7 +5,7 @@ public class Main {
     public static void main(String [] args) throws IOException {
         String inputFileName;
         String outputFileName;
-        
+
         if (args.length == 2) {
             inputFileName = args[0];
             outputFileName = args[1];
@@ -32,34 +32,26 @@ public class Main {
             if (cmd == null) break;
 
             try {
-                InputManager inputManager = new InputManager(Parser.parse(cmd));
-                
+                ArrayList<String> data = Parser.parse(cmd);
+
+                InputManager inputManager = new InputManager(data);
+
                 curCmd = inputManager.getCommand();
+
                 if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
                     employeeManager.sort();
-                
+
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
 
-                ArrayList<Boolean> pOption = new ArrayList<>();
-                for(Boolean val : inputManager.getPOption()){
-                    if(val == null)pOption.add(false);
-                    else pOption.add(val);
-                }
-
                 prevCmd = curCmd;
 
-                ResultMaker resultMaker = resultMakerFactory.getResultMaker(pOption, fileManager);
-                resultMaker.setResult(result, inputManager.getCommand());
-
-
-
+                ResultMaker resultMaker = resultMakerFactory.getResultMaker(inputManager.getPOption(), fileManager);
+                resultMaker.setResult(result, curCmd);
             }
             catch (Exception e){
                 continue;
             }
-
-
         }
         fileManager.closeFile();
     }

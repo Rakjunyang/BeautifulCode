@@ -20,7 +20,7 @@ public class InputManager {
     private OptionSelector optionSelector;
     private String command = null;
 
-    private List<Boolean> pOption = new ArrayList<>(Arrays.asList(new Boolean[3]));
+    private ArrayList<Boolean> pOption = new ArrayList<>(Arrays.asList(new Boolean[3]));
 
     public void setInputManagerInterface(List<String> data) {
         command = data.get(0);
@@ -40,10 +40,11 @@ public class InputManager {
 
     private void setOptionSelector(List<String> data) {
         String option1 = data.get(1);
-        if (!option1.isEmpty()) {
-            if (option1.equalsIgnoreCase(P_OPTION)) {
-                pOption.set(0, true);
-            }
+        if (!option1.isEmpty() && option1.equalsIgnoreCase(P_OPTION)) {
+            pOption.set(0, true);
+        }
+        else {
+            pOption.set(0, false);
         }
 
         String option2 = data.get(2);
@@ -102,7 +103,7 @@ public class InputManager {
         setOptionSelector(data);
     }
 
-    public List<Boolean> getPOption() {
+    public ArrayList<Boolean> getPOption() {
         return pOption;
     }
 
