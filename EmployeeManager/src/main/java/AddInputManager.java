@@ -12,29 +12,4 @@ public class AddInputManager implements InputManagerInterface {
     public List<String> getInfos() {
         return infos;
     }
-
-    @Override
-    public List<String> getOptions() {
-        return null;
-    }
-
-    @Override
-    public String getKey() {
-        return null;
-    }
-
-    @Override
-    public String getValue() {
-        return null;
-    }
-
-    @Override
-    public String getChgKey() {
-        return null;
-    }
-
-    @Override
-    public String getChgValue() {
-        return null;
-    }
 }

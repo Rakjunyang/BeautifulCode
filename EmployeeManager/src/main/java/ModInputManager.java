@@ -14,22 +14,18 @@ public class ModInputManager implements InputManagerInterface {
         value = data.get(5);
         chgKey = data.get(6);
         chgValue = data.get(7);
-
-    }
-
-    @Override
-    public List<String> getInfos() {
-        return null;
     }
 
     @Override
     public List<String> getOptions() {
         return options;
     }
+
     @Override
     public String getKey() {
         return key;
     }
+
     @Override
     public String getValue() {
         return value;
