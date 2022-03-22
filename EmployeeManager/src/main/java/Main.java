@@ -34,31 +34,21 @@ public class Main {
             try {
                 ArrayList<String> data = Parser.parse(cmd);
                 curCmd = data.get(0);
+
                 if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
                     employeeManager.sort();
                 InputManager inputManager = new InputManager(data);
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
 
-                ArrayList<Boolean> pOption = new ArrayList<>();
-                for(Boolean val : inputManager.getPOption()){
-                    if(val == null)pOption.add(false);
-                    else pOption.add(val);
-                }
-
                 prevCmd = curCmd;
 
-                ResultMaker resultMaker = resultMakerFactory.getResultMaker(pOption, fileManager);
-                resultMaker.setResult(result, data.get(0));
-
-
-
+                ResultMaker resultMaker = resultMakerFactory.getResultMaker(inputManager.getPOption(), fileManager);
+                resultMaker.setResult(result, curCmd);
             }
             catch (Exception e){
                 continue;
             }
-
-
         }
         fileManager.closeFile();
     }
