@@ -140,6 +140,6 @@ public class OptionSelectorTest {
         }
 
         Assertions.assertEquals(matchedEmployees.size(), 2);
-        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.BIRTHDAY), "20220318");
+        Assertions.assertEquals(matchedEmployees.get(0).getValue(EmployeeColumn.BIRTHDAY), "19700018");
     }
 }
