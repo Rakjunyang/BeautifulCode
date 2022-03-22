@@ -2,9 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputManager {
+    private final static int P_OPTION_INDEX = 1;
 
-    private inputManagerInterfaceManager inputManagerInterfaceManager = new inputManagerInterfaceManager();
-    private POptionManager pOptionSetterAndGetter = new POptionManager();
+    private InputManagerInterfaceManager inputManagerInterfaceManager = new InputManagerInterfaceManager();
+    private POptionManager pOptionManager = new POptionManager();
     private OptionSelectorManager optionSelectorManager = new OptionSelectorManager();
 
     InputManager(List<String> data) {
@@ -22,11 +23,11 @@ public class InputManager {
     }
 
     public void setpOption(List<String> data) {
-        pOptionSetterAndGetter.setpOption(data.get(1));
+        pOptionManager.setpOption(data.get(P_OPTION_INDEX));
     }
 
     public ArrayList<Boolean> getPOption() {
-        return pOptionSetterAndGetter.getPOption();
+        return pOptionManager.getPOption();
     }
 
     public void setOptionSelector(List<String> data) {

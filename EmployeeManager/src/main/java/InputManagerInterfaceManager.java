@@ -1,17 +1,24 @@
 import java.util.List;
 
-public class inputManagerInterfaceManager {
+public class InputManagerInterfaceManager {
 
     private final static String ADD = "ADD";
     private final static String DEL = "DEL";
     private final static String MOD = "MOD";
     private final static String SCH = "SCH";
 
+    private final static int COMMAND_INDEX = 0;
+    private final static int EMPLOYEENUM_INDEX = 0;
+    private final static int NAME_INDEX = 1;
+    private final static int CL_INDEX = 2;
+    private final static int PHONENUM_INDEX = 3;
+    private final static int BIRTHDAY_INDEX = 4;
+    private final static int CERTI_INDEX = 5;
     private InputManagerInterface inputManagerInterface;
     private String command;
 
     public void setInputManagerInterface(List<String> data) {
-        command = data.get(0);
+        command = data.get(COMMAND_INDEX);
         if (command.equalsIgnoreCase(ADD)) {
             inputManagerInterface = new AddInputManager(data);
         } else if (command.equalsIgnoreCase(DEL)) {
@@ -33,8 +40,8 @@ public class inputManagerInterfaceManager {
     public Operator getOperator() {
         if (inputManagerInterface instanceof AddInputManager) {
             List<String> infos = inputManagerInterface.getInfos();
-            return new AddOperator(infos.get(0), infos.get(1), infos.get(2), infos.get(3),
-                infos.get(4), infos.get(5));
+            return new AddOperator(infos.get(EMPLOYEENUM_INDEX), infos.get(NAME_INDEX), infos.get(CL_INDEX), infos.get(PHONENUM_INDEX),
+                infos.get(BIRTHDAY_INDEX), infos.get(CERTI_INDEX));
         } else if (inputManagerInterface instanceof DelInputManager) {
             return new DeleteOperator();
         } else if (inputManagerInterface instanceof ModInputManager) {
