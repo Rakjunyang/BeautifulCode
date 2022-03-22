@@ -15,7 +15,6 @@ public class Main {
             return;
         }
 
-
         FileManager fileManager = new FileManager(inputFileName, outputFileName);
         if (!fileManager.init()){
             System.out.println("[File Init Error] Failed to initialize input and output files");
@@ -24,8 +23,6 @@ public class Main {
 
         EmployeeManager employeeManager = new EmployeeManager();
         ResultMakerFactory resultMakerFactory = new ResultMakerFactory();
-        String prevCmd = "-";
-        String curCmd = null;
 
         while(true){
             String cmd = fileManager.inputBuffer.readLine();
@@ -34,14 +31,10 @@ public class Main {
             try {
                 InputManager inputManager = new InputManager(Parser.parse(cmd));
 
-                curCmd = inputManager.getCommand();
-                if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
-                    employeeManager.sort();
+                employeeManager.sort(inputManager.getCommand());
 
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
-
-                prevCmd = curCmd;
 
                 ResultMaker resultMaker = resultMakerFactory.getResultMaker(inputManager.getPOption(), fileManager);
                 resultMaker.setResult(result, inputManager.getCommand());
