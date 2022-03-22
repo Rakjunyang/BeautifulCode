@@ -8,9 +8,8 @@ public class POptionManager {
 
     private ArrayList<Boolean> pOption = new ArrayList<>(Arrays.asList(new Boolean[3]));
 
-    public void setpOption(List<String> data) {
-        String option1 = data.get(1);
-        if (!option1.isEmpty() && option1.equalsIgnoreCase(P_OPTION)) {
+    public void setpOption(String firstOption) {
+        if (!firstOption.isEmpty() && firstOption.equalsIgnoreCase(P_OPTION)) {
             pOption.set(0, true);
         } else {
             pOption.set(0, false);

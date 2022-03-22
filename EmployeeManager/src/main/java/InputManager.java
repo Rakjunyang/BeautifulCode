@@ -22,7 +22,7 @@ public class InputManager {
     }
 
     public void setpOption(List<String> data) {
-        pOptionSetterAndGetter.setpOption(data);
+        pOptionSetterAndGetter.setpOption(data.get(0));
     }
 
     public ArrayList<Boolean> getPOption() {
