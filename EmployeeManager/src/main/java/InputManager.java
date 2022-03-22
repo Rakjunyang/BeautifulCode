@@ -155,4 +155,5 @@ public class InputManager {
     
     public String getCommand(){
         return command;
+    }
 }
