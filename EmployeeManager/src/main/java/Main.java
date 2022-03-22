@@ -5,7 +5,7 @@ public class Main {
     public static void main(String [] args) throws IOException {
         String inputFileName;
         String outputFileName;
-        
+
         if (args.length == 2) {
             inputFileName = args[0];
             outputFileName = args[1];
@@ -32,19 +32,19 @@ public class Main {
             if (cmd == null) break;
 
             try {
-                ArrayList<String> data = Parser.parse(cmd);
-                curCmd = data.get(0);
+                InputManager inputManager = new InputManager(Parser.parse(cmd));
 
+                curCmd = inputManager.getCommand();
                 if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
                     employeeManager.sort();
-                InputManager inputManager = new InputManager(data);
+
                 ArrayList<String> result = inputManager.getOperator().executeOperator(employeeManager,
                     inputManager.getOptionSelector());
 
                 prevCmd = curCmd;
 
                 ResultMaker resultMaker = resultMakerFactory.getResultMaker(inputManager.getPOption(), fileManager);
-                resultMaker.setResult(result, curCmd);
+                resultMaker.setResult(result, inputManager.getCommand());
             }
             catch (Exception e){
                 continue;

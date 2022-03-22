@@ -18,11 +18,12 @@ public class InputManager {
 
     public InputManagerInterface inputManagerInterface;
     private OptionSelector optionSelector;
+    private String command = null;
 
     private ArrayList<Boolean> pOption = new ArrayList<>(Arrays.asList(new Boolean[3]));
 
     public void setInputManagerInterface(List<String> data) {
-        String command = data.get(0);
+        command = data.get(0);
         if (command.equalsIgnoreCase(ADD)) {
             inputManagerInterface = new AddInputManager(data);
         } else if (command.equalsIgnoreCase(DEL)) {
@@ -151,4 +152,7 @@ public class InputManager {
     public OptionSelector getOptionSelector() {
         return optionSelector;
     }
+    
+    public String getCommand(){
+        return command;
 }
