@@ -32,8 +32,7 @@ public class Main {
             if (cmd == null) break;
 
             try {
-                ArrayList<String> data = Parser.parse(cmd);
-                InputManager inputManager = new InputManager(data);
+                InputManager inputManager = new InputManager(Parser.parse(cmd));
                 
                 curCmd = inputManager.getCommand();
                 if(prevCmd.equals("ADD") && !curCmd.equals("ADD"))
